@@ -1,0 +1,133 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a sample Petstore server.  You can find \nout more about Swagger at \n[http://swagger.io](http://swagger.io) or on \n[irc.freenode.net, #swagger](http://swagger.io/irc/).\n"
+  version: 1.0.0
+  title: Swagger TodoAPI
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: vishalsingh1812@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: virtserver.swaggerhub.com
+basePath: /newvishal/Todo/1.0.0
+tags:
+- name: Todo
+  description: Todo Module
+schemes:
+- https
+- http
+paths:
+  /todo:
+    get:
+      tags:
+      - Todo
+      summary: get all todos
+      description: Returns a all todo
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: successful operation
+        "500":
+          description: database error
+    post:
+      tags:
+      - Todo
+      summary: Add a new todo
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Todo object that needs to be added
+        required: true
+        schema:
+          $ref: '#/definitions/Todo'
+      responses:
+        "200":
+          description: Successfully
+        "500":
+          description: database error
+  /todo/{id}:
+    get:
+      tags:
+      - Todo
+      summary: Find todo by ID
+      description: Returns a single todo
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of todo to return
+        required: true
+        type: string
+      responses:
+        "200":
+          description: successful operation
+        "500":
+          description: Database error
+    put:
+      tags:
+      - Todo
+      summary: Update by ID
+      description: Update single todo
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of todo
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: Todo object that needs to be added
+        required: true
+        schema:
+          $ref: '#/definitions/Todo'
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: database error
+    delete:
+      tags:
+      - Todo
+      summary: Delete todo
+      description: delete todo by id
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of todo
+        required: true
+        type: string
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: database error
+definitions:
+  Todo:
+    type: object
+    required:
+    - status
+    - work
+    properties:
+      work:
+        type: string
+        example: doggie
+      status:
+        type: string
+        example: true Or False
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
